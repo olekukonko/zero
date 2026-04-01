@@ -16,25 +16,25 @@ package main
 import "github.com/olekukonko/zero"
 
 func main() {
-    // Zero any value
-    password := "super-secret"
-    zero.Zero(&password)  // password is now ""
+	// Zero any value
+	password := "super-secret"
+	zero.Zero(&password) // password is now ""
 
-    // Zero struct fields
-    type Token struct {
-        Key string
-        Data []byte
-    }
-    t := Token{Key: "abc123", Data: []byte("sensitive")}
-    zero.Zero(&t)  // all fields zeroed
+	// Zero struct fields
+	type Token struct {
+		Key  string
+		Data []byte
+	}
+	t := Token{Key: "abc123", Data: []byte("sensitive")}
+	zero.Zero(&t) // all fields zeroed
 
-    // Zero slice elements and backing array
-    buf := []byte("secret data")
-    zero.Zero(&buf)  // all bytes set to 0, slice is nil
+	// Zero slice elements and backing array
+	buf := []byte("secret data")
+	zero.Byte(buf) // all bytes set to 0, slice is nil
 
-    // String helper also zeros backing bytes (with panic recovery for read-only literals)
-    s := string([]byte("mutable"))
-    zero.String(&s)  // s is "", backing bytes zeroed
+	// String helper also zeros backing bytes (with panic recovery for read-only literals)
+	s := "mutable"
+	zero.String(&s) // s is "", backing bytes zeroed
 }
 ```
 
