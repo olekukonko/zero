@@ -30,7 +30,7 @@ func main() {
 
 	// Zero slice elements and backing array
 	buf := []byte("secret data")
-	zero.Byte(buf) // all bytes set to 0, slice is nil
+	zero.Bytes(buf) // all bytes set to 0, slice is nil
 
 	// String helper also zeros backing bytes (with panic recovery for read-only literals)
 	s := "mutable"
@@ -41,7 +41,7 @@ func main() {
 ## How It Works
 
 - `Zero(v any)` - Recursively zeros values via reflection and unsafe memory writes
-- `Byte([]byte)` - takes value, modifies backing memory (mutable data)
+- `Bytes([]byte)` - takes value, modifies backing memory (mutable data)
 - `String(s *string)` - Clears string reference and attempts to zero backing bytes (recovers from SIGBUS on string literals in read-only memory)
 
 ## Safety

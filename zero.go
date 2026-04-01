@@ -156,9 +156,9 @@ func String(s *string) {
 	}
 }
 
-// Byte zeros a byte slice's backing array in place.
+// Bytes zeros a byte slice's backing array in place.
 // The slice header remains valid but all bytes are set to 0.
-func Byte(buf []byte) {
+func Bytes(buf []byte) {
 	if len(buf) == 0 {
 		return
 	}
